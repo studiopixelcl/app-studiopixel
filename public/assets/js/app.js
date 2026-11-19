@@ -37,7 +37,9 @@ const LOCAL_FALLBACK_CATALOG = [
       'Métricas instantáneas de platos estrella',
       'Despliegue bajo tu propio subdominio'
     ],
-    demo_url: '#demo-restaurapp',
+    demo_url: 'https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4',
+    app_url: 'https://restaurapp.studiopixel.cl',
+    onboarding_url: 'https://restaurapp.studiopixel.cl/onboarding.html',
     is_featured: 1,
     sort_order: 1
   },
@@ -338,16 +340,30 @@ function generateAppCardHTML(app) {
   // Botones a la derecha del footer
   let buttonsHTML = '';
   if (isAvailable) {
-    buttonsHTML = `
-      <div class="flex items-center gap-1.5">
-        <button onclick="openDemoPreview('${app.slug}')" class="btn-ghost">
-          <span>Ver Demo</span>
-        </button>
-        <button onclick="handleStartTrial('${app.slug}', '${app.name}')" class="btn-primary">
-          <span>Probar Gratis</span>
-        </button>
-      </div>
-    `;
+    if (app.slug === 'restaurapp-lite') {
+      buttonsHTML = `
+        <div class="flex items-center gap-1.5">
+          <a href="https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4" target="_blank" rel="noopener noreferrer" class="btn-ghost" title="Ver carta demo en vivo">
+            <span>Ver Demo</span>
+            <i data-lucide="arrow-up-right" class="w-3 h-3 text-slate-500"></i>
+          </a>
+          <a href="https://restaurapp.studiopixel.cl/onboarding.html" target="_blank" rel="noopener noreferrer" class="btn-primary" title="Comenzar prueba gratis de 14 días">
+            <span>Probar Gratis</span>
+          </a>
+        </div>
+      `;
+    } else {
+      buttonsHTML = `
+        <div class="flex items-center gap-1.5">
+          <button onclick="openDemoPreview('${app.slug}')" class="btn-ghost">
+            <span>Ver Demo</span>
+          </button>
+          <button onclick="handleStartTrial('${app.slug}', '${app.name}')" class="btn-primary">
+            <span>Probar Gratis</span>
+          </button>
+        </div>
+      `;
+    }
   } else if (app.status === 'enterprise') {
     buttonsHTML = `
       <a href="https://studiopixel.cl" target="_blank" rel="noopener noreferrer" class="btn-secondary">
@@ -512,6 +528,10 @@ function switchAuthTab(tab) {
 }
 
 function handleStartTrial(slug, name) {
+  if (slug === 'restaurapp-lite') {
+    window.location.href = 'https://restaurapp.studiopixel.cl/onboarding.html';
+    return;
+  }
   // Si ya tiene sesión, redirigir directo al dashboard para activar o mostrar
   if (AppState.currentUser) {
     showToast(`Iniciando activación de ${name}...`, 'info');
@@ -538,6 +558,10 @@ function openWaitlistModal(slug, name) {
 }
 
 function openDemoPreview(slug) {
+  if (slug === 'restaurapp-lite') {
+    window.open('https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4', '_blank');
+    return;
+  }
   const modal = document.getElementById('modal-demo-preview');
   if (!modal) return;
 
@@ -798,7 +822,7 @@ function renderRestaurappDemoSimulator() {
           <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
           <span class="text-xs font-bold text-white uppercase tracking-wider">Restaurapp KDS • Cocina y Barra en Vivo</span>
         </div>
-        <span class="text-[11px] text-slate-400 font-mono">demo.restaurapp.cl</span>
+        <span class="text-[11px] text-slate-400 font-mono">restaurapp.studiopixel.cl</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -863,10 +887,16 @@ function renderRestaurappDemoSimulator() {
         <h4 class="text-white font-bold text-sm mb-0.5">¿Quieres implementar Restaurapp Lite en tu local?</h4>
         <p class="text-xs text-slate-400">Despliegue inmediato en menos de 5 minutos con subdominio propio.</p>
       </div>
-      <button onclick="handleStartTrial('restaurapp-lite', 'Restaurapp Lite')" class="btn-primary text-xs py-2 px-4 shrink-0">
-        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-        <span>Comenzar Prueba de 14 Días</span>
-      </button>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs py-2 px-3">
+          <i data-lucide="qr-code" class="w-3.5 h-3.5 text-sp-turquoise"></i>
+          <span>Ver Demo en Vivo</span>
+        </a>
+        <a href="https://restaurapp.studiopixel.cl/onboarding.html" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-3.5">
+          <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+          <span>Comenzar Prueba Gratis</span>
+        </a>
+      </div>
     </div>
   `;
 }

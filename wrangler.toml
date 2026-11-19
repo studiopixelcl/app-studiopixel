@@ -15,11 +15,9 @@ COMPANY_NAME = "Studio Pixel SpA"
 MAIN_DOMAIN = "studiopixel.cl"
 APP_DOMAIN = "app.studiopixel.cl"
 
-# Binding de Base de Datos Cloudflare D1
-# Para producción: reemplaza 'database_id' con el ID generado mediante:
-#   npx wrangler d1 create sp_hub_db
+# Binding de Base de Datos Cloudflare D1 en Producción
 [[d1_databases]]
 binding = "sp_hub_db"
 database_name = "sp_hub_db"
-database_id = "sp_hub_db_local_dev_id"
+database_id = "a2de5b33-8061-419a-a250-be88c79d3b91"
 migrations_dir = "migrations"

@@ -224,9 +224,9 @@
                   Sistema integral de cartas digitales QR, KDS de cocina en tiempo real y recepción de pedidos sin comisiones por mesa.
                 </p>
                 <div class="flex items-center gap-2 text-xs">
-                  <span class="text-slate-400">URL Pública Asignada:</span>
+                  <span class="text-slate-400">Acceso a la Plataforma:</span>
                   <div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-sp-turquoise font-mono text-[11px]">
-                    <span id="active-subdomain-display">laterraza.restaurapp.cl</span>
+                    <span id="active-subdomain-display">restaurapp.studiopixel.cl</span>
                     <button onclick="copySubdomain()" class="text-slate-400 hover:text-white ml-1" title="Copiar enlace">
                       <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                     </button>
@@ -237,19 +237,20 @@
 
             <!-- Acciones Operativas de la App -->
             <div class="flex flex-wrap items-center gap-2.5 shrink-0">
-              <button onclick="simulateOpenKDS()" class="btn-primary text-xs py-2.5 px-4 shadow-lg shadow-sp-turquoise/10">
-                <i data-lucide="tv" class="w-4 h-4"></i>
-                <span>Abrir Pantalla Cocina (KDS)</span>
-              </button>
+              <a href="https://restaurapp.studiopixel.cl" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2.5 px-4 shadow-lg shadow-sp-turquoise/10 flex items-center gap-1.5" title="Acceso al panel oficial de Restaurapp">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                <span>Abrir Aplicación</span>
+              </a>
 
-              <button onclick="simulateOpenQRMenu()" class="btn-secondary text-xs py-2.5 px-3.5">
+              <a href="https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs py-2.5 px-3.5 flex items-center gap-1.5" title="Ver carta demo en vivo">
                 <i data-lucide="qr-code" class="w-4 h-4 text-sp-turquoise"></i>
-                <span>Ver Carta QR</span>
-              </button>
+                <span>Ver Demo</span>
+              </a>
 
-              <button onclick="showToast('Editor de platos cargado en segundo plano.', 'info')" class="btn-secondary text-xs py-2.5 px-3">
-                <i data-lucide="settings" class="w-4 h-4"></i>
-              </button>
+              <a href="https://restaurapp.studiopixel.cl/onboarding.html" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs py-2.5 px-3.5 flex items-center gap-1.5" title="Comenzar prueba gratis de 14 días">
+                <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                <span>Probar Gratis</span>
+              </a>
             </div>
 
           </div>
@@ -484,7 +485,7 @@
         avatarInitials.innerText = initials;
       }
       if (activeSubdomain) {
-        activeSubdomain.innerText = `${cleanSub || 'laterraza'}.restaurapp.cl`;
+        activeSubdomain.innerText = 'restaurapp.studiopixel.cl';
       }
 
       if (billingOrgName) billingOrgName.value = orgName;
@@ -516,24 +517,17 @@
     }
 
     function copySubdomain() {
-      const el = document.getElementById('active-subdomain-display');
-      if (el) {
-        navigator.clipboard.writeText(`https://${el.innerText}`);
-        showToast('Enlace copiado al portapapeles: https://' + el.innerText, 'success');
-      }
+      const url = 'https://restaurapp.studiopixel.cl';
+      navigator.clipboard.writeText(url);
+      showToast('Enlace copiado al portapapeles: ' + url, 'success');
     }
 
     function simulateOpenKDS() {
-      showToast('Cargando pantalla de cocina (KDS)...', 'info');
-      setTimeout(() => {
-        window.open('index.html#demo-restaurapp', '_self');
-      }, 400);
+      window.open('https://restaurapp.studiopixel.cl', '_blank');
     }
 
     function simulateOpenQRMenu() {
-      const el = document.getElementById('active-subdomain-display');
-      const domain = el ? el.innerText : 'laterraza.restaurapp.cl';
-      showToast(`Simulando escaneo de código QR para https://${domain}`, 'info');
+      window.open('https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4', '_blank');
     }
 
     function requestAppActivation(slug, name) {

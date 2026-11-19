@@ -87,7 +87,9 @@ export async function onRequestGet(context) {
         'Métricas instantáneas de platos estrella',
         'Despliegue bajo tu propio subdominio'
       ],
-      demo_url: '#demo-restaurapp',
+      demo_url: 'https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4',
+      app_url: 'https://restaurapp.studiopixel.cl',
+      onboarding_url: 'https://restaurapp.studiopixel.cl/onboarding.html',
       is_featured: 1,
       sort_order: 1
     },

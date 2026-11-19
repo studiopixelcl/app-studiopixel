@@ -110,7 +110,7 @@ INSERT OR IGNORE INTO apps_catalog (
     '14 días gratis • Luego $19.990 + IVA/mes',
     19990,
     '["Carta digital QR sin límite de visitas", "Panel de cocina y barra en tiempo real (KDS)", "Cero comisiones por comanda o venta", "Control de disponibilidad y stock de platos", "Métricas instantáneas de platos estrella", "Despliegue bajo tu propio subdominio"]',
-    '#demo-restaurapp',
+    'https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4',
     1,
     1
 ),

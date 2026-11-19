@@ -1,0 +1,33 @@
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cloudflare Wrangler & D1 Local State
+.wrangler/
+.dev.vars
+.dev.vars.local
+
+# Archivos de Entorno y Secretos
+.env
+.env.*
+!.env.example
+
+# Archivos Temporales de Sistema Operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs y Builds
+logs
+*.log
+dist/
+.cache/

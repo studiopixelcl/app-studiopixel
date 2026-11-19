@@ -1,0 +1,25 @@
+# ==============================================================================
+# Studio Pixel SpA - App Hub (app.studiopixel.cl)
+# Configuración de despliegue para Cloudflare Pages / Workers + D1
+# ==============================================================================
+
+name = "sp-app-hub"
+compatibility_date = "2024-04-01"
+pages_build_output_dir = "./public"
+
+# Variables de entorno públicas
+[vars]
+ENVIRONMENT = "production"
+APP_NAME = "Studio Pixel App Hub"
+COMPANY_NAME = "Studio Pixel SpA"
+MAIN_DOMAIN = "studiopixel.cl"
+APP_DOMAIN = "app.studiopixel.cl"
+
+# Binding de Base de Datos Cloudflare D1
+# Para producción: reemplaza 'database_id' con el ID generado mediante:
+#   npx wrangler d1 create sp_hub_db
+[[d1_databases]]
+binding = "sp_hub_db"
+database_name = "sp_hub_db"
+database_id = "sp_hub_db_local_dev_id"
+migrations_dir = "migrations"

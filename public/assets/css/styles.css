@@ -1,0 +1,368 @@
+/* ==============================================================================
+   Studio Pixel SpA - Design System & Custom Styles
+   Rediseño Ejecutivo Minimalista (Estilo Linear / Vercel)
+   Subdominio: app.studiopixel.cl
+   ============================================================================== */
+
+:root {
+  --bg-primary: #070B12;
+  --bg-surface: #0D131F;
+  --bg-surface-elevated: #131C2E;
+  --border-subtle: #1E293B;
+  --border-hover: #334155;
+  --border-active-card: rgba(0, 196, 181, 0.5);
+
+  --accent-turquoise: #00C4B5;
+  --accent-turquoise-hover: #00A89B;
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-dark: #070B12;
+
+  --radius-card: 12px;
+  --radius-button: 8px;
+  --radius-pill: 9999px;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Base y Fondo Mate Limpio (Sin resplandores excesivos)
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  color: var(--text-primary);
+}
+
+/* Scrollbar sobrio */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* --------------------------------------------------------------------------
+   Superficies y Glassmorphism sutil
+   -------------------------------------------------------------------------- */
+.glass-nav {
+  background: rgba(7, 11, 18, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   Tarjetas del Catálogo (Cards 2 Columnas - Minimalistas)
+   -------------------------------------------------------------------------- */
+.app-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+/* Card activa con borde turquesa suave en hover */
+.app-card.card-available:hover {
+  border-color: var(--border-active-card);
+}
+
+/* Icon Container en tarjeta */
+.app-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F8FAFC;
+}
+
+/* --------------------------------------------------------------------------
+   Badges de Estado Limpios
+   -------------------------------------------------------------------------- */
+.badge-clean {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  line-height: 1;
+}
+
+.badge-clean-available {
+  color: var(--text-primary);
+  background: rgba(0, 196, 181, 0.08);
+  border-color: rgba(0, 196, 181, 0.25);
+}
+
+/* Punto indicador de disponibilidad */
+.status-dot-active {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-turquoise);
+  display: inline-block;
+}
+
+.status-dot-neutral {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #64748B;
+  display: inline-block;
+}
+
+/* Tags sutiles en tarjeta (ej. Carta QR • Pedidos Tiempo Real) */
+.feature-tag {
+  font-size: 0.72rem;
+  color: #94A3B8;
+  background-color: rgba(19, 28, 46, 0.6);
+  border: 1px solid rgba(30, 41, 59, 0.8);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   Botones Corporativos Ejecutivos
+   -------------------------------------------------------------------------- */
+.btn-primary {
+  background-color: var(--accent-turquoise);
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-button);
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.25;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-turquoise-hover);
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-button);
+  padding: 0.5rem 0.9rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.25;
+}
+
+.btn-secondary:hover {
+  border-color: var(--border-hover);
+  background-color: #1a253c;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-button);
+  transition: color 0.15s ease, background-color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* --------------------------------------------------------------------------
+   Fila Unificada: Búsqueda y Filtros Minimalistas
+   -------------------------------------------------------------------------- */
+.search-input-clean {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.45rem 0.85rem 0.45rem 2.25rem;
+  color: #F8FAFC;
+  font-size: 0.8125rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.search-input-clean:focus {
+  border-color: #334155;
+}
+
+.search-input-clean::placeholder {
+  color: #64748B;
+}
+
+.filter-chip {
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  color: #F8FAFC;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.filter-chip.active {
+  color: #F8FAFC;
+  background-color: var(--bg-surface-elevated);
+  border-color: var(--border-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   Modales & Overlays
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(5, 8, 14, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+  transform: scale(0.98);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.modal-backdrop.active .modal-container {
+  transform: scale(1);
+}
+
+.modal-preview-wide {
+  max-width: 840px;
+}
+
+/* Inputs de Formulario */
+.form-input {
+  width: 100%;
+  background: #070B12;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  color: #F8FAFC;
+  font-size: 0.85rem;
+  transition: border-color 0.15s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #334155;
+}
+
+.form-input::placeholder {
+  color: #475569;
+}
+
+/* --------------------------------------------------------------------------
+   Toast Notifications
+   -------------------------------------------------------------------------- */
+#sp-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  transform: translateY(120%);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#sp-toast.show {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Restaurapp KDS Simulator
+   -------------------------------------------------------------------------- */
+.kds-ticket {
+  background: #131C2E;
+  border-left: 3px solid var(--accent-turquoise);
+  border-radius: 8px;
+  padding: 0.85rem;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "app-studiopixel",
+  "version": "1.0.0",
+  "description": "Studio Pixel SpA - Hub Central y Catálogo de Aplicaciones SaaS (app.studiopixel.cl)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "dev:d1": "wrangler pages dev public --d1=sp_hub_db",
+    "d1:init-local": "wrangler d1 execute sp_hub_db --local --file=./schema.sql",
+    "d1:init-remote": "wrangler d1 execute sp_hub_db --remote --file=./schema.sql",
+    "deploy": "wrangler pages deploy public"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  },
+  "author": "Studio Pixel SpA <contacto@studiopixel.cl>",
+  "license": "Proprietary"
+}

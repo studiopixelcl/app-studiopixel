@@ -37,9 +37,9 @@ const LOCAL_FALLBACK_CATALOG = [
       'Métricas instantáneas de platos estrella',
       'Despliegue bajo tu propio subdominio'
     ],
-    demo_url: 'https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4',
+    demo_url: 'https://restaurapp.studiopixel.cl/cliente?local=demo&mesa=4',
     app_url: 'https://restaurapp.studiopixel.cl',
-    onboarding_url: 'https://restaurapp.studiopixel.cl/onboarding.html',
+    onboarding_url: 'https://restaurapp.studiopixel.cl/onboarding',
     is_featured: 1,
     sort_order: 1
   },
@@ -149,11 +149,11 @@ function updateNavbarSession(user) {
     const orgName = (user.organization && user.organization.name) ? user.organization.name : 'Mi Empresa';
     authContainer.innerHTML = `
       <div class="flex items-center gap-3">
-        <a href="dashboard.html" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold hover:bg-emerald-500/20 transition-colors">
+        <a href="dashboard" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold hover:bg-emerald-500/20 transition-colors">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>${orgName}</span>
         </a>
-        <a href="dashboard.html" class="btn-primary text-xs py-2 px-3.5">
+        <a href="dashboard" class="btn-primary text-xs py-2 px-3.5">
           <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
           <span>Mi Consola</span>
         </a>
@@ -343,11 +343,11 @@ function generateAppCardHTML(app) {
     if (app.slug === 'restaurapp-lite') {
       buttonsHTML = `
         <div class="flex items-center gap-1.5">
-          <a href="https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4" target="_blank" rel="noopener noreferrer" class="btn-ghost" title="Ver carta demo en vivo">
+          <a href="https://restaurapp.studiopixel.cl/cliente?local=demo&mesa=4" target="_blank" rel="noopener noreferrer" class="btn-ghost" title="Ver carta demo en vivo">
             <span>Ver Demo</span>
             <i data-lucide="arrow-up-right" class="w-3 h-3 text-slate-500"></i>
           </a>
-          <a href="https://restaurapp.studiopixel.cl/onboarding.html" target="_blank" rel="noopener noreferrer" class="btn-primary" title="Comenzar prueba gratis de 14 días">
+          <a href="https://restaurapp.studiopixel.cl/onboarding" target="_blank" rel="noopener noreferrer" class="btn-primary" title="Comenzar prueba gratis de 14 días">
             <span>Probar Gratis</span>
           </a>
         </div>
@@ -529,14 +529,14 @@ function switchAuthTab(tab) {
 
 function handleStartTrial(slug, name) {
   if (slug === 'restaurapp-lite') {
-    window.location.href = 'https://restaurapp.studiopixel.cl/onboarding.html';
+    window.location.href = 'https://restaurapp.studiopixel.cl/onboarding';
     return;
   }
   // Si ya tiene sesión, redirigir directo al dashboard para activar o mostrar
   if (AppState.currentUser) {
     showToast(`Iniciando activación de ${name}...`, 'info');
     setTimeout(() => {
-      window.location.href = `dashboard.html?activate=${slug}`;
+      window.location.href = `dashboard?activate=${slug}`;
     }, 600);
     return;
   }
@@ -559,7 +559,7 @@ function openWaitlistModal(slug, name) {
 
 function openDemoPreview(slug) {
   if (slug === 'restaurapp-lite') {
-    window.open('https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4', '_blank');
+    window.open('https://restaurapp.studiopixel.cl/cliente?local=demo&mesa=4', '_blank');
     return;
   }
   const modal = document.getElementById('modal-demo-preview');
@@ -619,7 +619,7 @@ async function handleLoginFormSubmit(event) {
       updateNavbarSession(data.user);
 
       setTimeout(() => {
-        window.location.href = 'dashboard.html';
+        window.location.href = 'dashboard';
       }, 700);
     } else {
       showToast(data.error || 'Credenciales inválidas.', 'error');
@@ -643,7 +643,7 @@ async function handleLoginFormSubmit(event) {
     showToast('Sesión iniciada (Modo Local).', 'success');
     closeAllModals();
     setTimeout(() => {
-      window.location.href = 'dashboard.html';
+      window.location.href = 'dashboard';
     }, 600);
   } finally {
     submitBtn.disabled = false;
@@ -700,7 +700,7 @@ async function handleRegisterFormSubmit(event) {
       closeAllModals();
 
       setTimeout(() => {
-        window.location.href = 'dashboard.html?new=1';
+        window.location.href = 'dashboard?new=1';
       }, 800);
     } else {
       showToast(data.error || 'Error al registrar.', 'error');
@@ -739,7 +739,7 @@ async function handleRegisterFormSubmit(event) {
     showToast('Ecosistema aprovisionado con éxito.', 'success');
     closeAllModals();
     setTimeout(() => {
-      window.location.href = 'dashboard.html?new=1';
+      window.location.href = 'dashboard?new=1';
     }, 700);
   } finally {
     submitBtn.disabled = false;
@@ -780,7 +780,7 @@ function loginAsDemoUser() {
   showToast('Accediendo como Bistró La Terraza SpA...', 'success');
   closeAllModals();
   setTimeout(() => {
-    window.location.href = 'dashboard.html';
+    window.location.href = 'dashboard';
   }, 500);
 }
 
@@ -888,11 +888,11 @@ function renderRestaurappDemoSimulator() {
         <p class="text-xs text-slate-400">Despliegue inmediato en menos de 5 minutos con subdominio propio.</p>
       </div>
       <div class="flex items-center gap-2 shrink-0">
-        <a href="https://restaurapp.studiopixel.cl/cliente.html?local=demo&mesa=4" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs py-2 px-3">
+        <a href="https://restaurapp.studiopixel.cl/cliente?local=demo&mesa=4" target="_blank" rel="noopener noreferrer" class="btn-secondary text-xs py-2 px-3">
           <i data-lucide="qr-code" class="w-3.5 h-3.5 text-sp-turquoise"></i>
           <span>Ver Demo en Vivo</span>
         </a>
-        <a href="https://restaurapp.studiopixel.cl/onboarding.html" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-3.5">
+        <a href="https://restaurapp.studiopixel.cl/onboarding" target="_blank" rel="noopener noreferrer" class="btn-primary text-xs py-2 px-3.5">
           <i data-lucide="zap" class="w-3.5 h-3.5"></i>
           <span>Comenzar Prueba Gratis</span>
         </a>
